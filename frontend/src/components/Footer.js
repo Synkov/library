@@ -3,7 +3,7 @@ import React from 'react'
 
 const FooterComponent = () => {
     return (
-        <span>Copyright &copy;
+        <span class="footer_text"> &copy; Geekbrains 2022
         </span>
     )
 }

@@ -5,6 +5,7 @@ import './App.css';
 import UserList from './components/Users.js';
 import FooterComponent from './components/Footer.js';
 import MenuList from './components/Menu.js';
+import './style.css';
 
 
 
@@ -14,11 +15,23 @@ class App extends React.Component {
        super(props)
        this.state = {
            'users': [],
-           'menu': []
+           'menuItems': [],
+           'footer': []
        }
    }
 
    componentDidMount() {
+
+       const menuItems = [
+            {
+                'title': 'Главная',
+                'url': '/'
+            },
+            {
+                'title': 'Настройки',
+                'url': '/settings'
+            },
+       ]
 
        axios.get('http://127.0.0.1:8000/api/users')
            .then(response => {
@@ -26,34 +39,40 @@ class App extends React.Component {
                    this.setState(
                    {
                        'users': users,
-                       'menu': this.state.menuItems
+                       'menuItems': menuItems,
                    }
-               )
-           }).catch(error => console.log(error))
+               );
+           }).catch(error => console.log(error));
 
-       this.setState({
-           'users': this.state.users,
-           'menu': [
-               {
-                   'title': 'главная',
-                   'link': 'http://localhost:8000/'
-               }
-           ]
-       });
+       // this.setState({
+       //     'users': this.state.users,
+       //     'menu': [
+       //         {
+       //             'title': 'главная',
+       //             'url': 'http://localhost:8000/'
+       //         }
+       //     ]
+       // });
    }
 
    render () {
        return (
-           <div>
-                <div>
-                    <MenuList menuItems={this.state.menuItems} />
-                </div>
-                <div>
-                    <UserList users={this.state.users} />
-                </div>
-                <div>
-                    <FooterComponent footerComponent={this.state.footerComponent} />
-                </div>
+           <div class="container">
+               <div class="block">
+                   <div class="sidenav">
+                       <div>
+                           <MenuList menuItems={this.state.menuItems} />
+                       </div>
+                   </div>
+                   <div class="content">
+                       <div>
+                           <UserList users={this.state.users} />
+                       </div>
+                   </div>
+               </div>
+               <div class="footer">
+                   <FooterComponent footerComponent={this.state.footerComponent} />
+               </div>
            </div>
        )
    }

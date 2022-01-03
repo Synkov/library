@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css'
+
 
 const UserItem = ({user}) => {
     return (
@@ -8,7 +8,7 @@ const UserItem = ({user}) => {
                 {user.username}
             </td>
             <td>
-                {user.first_name}
+               <p> {user.first_name}</p>
             </td>
             <td>
                 {user.last_name}
