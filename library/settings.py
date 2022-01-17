@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 # AUTH
-AUTH_USER_MODEL = 'usersapp.User'
+AUTH_USER_MODEL = "usersapp.User"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

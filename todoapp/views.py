@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
-from .serializers import ProjectModelSerializer, ToDoModelSerializer
+
 from .models import Project, ToDo
+from .serializers import ProjectModelSerializer, ToDoModelSerializer
 
 
 class ProjectModelViewSet(ModelViewSet):

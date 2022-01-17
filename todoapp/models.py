@@ -1,6 +1,9 @@
-from django.db import models
-from usersapp.models import User
 from uuid import uuid4
+
+from django.db import models
+
+from usersapp.models import User
+
 
 class Project(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid4)

@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from usersapp.views import UserModelViewSet
 from todoapp.views import ProjectModelViewSet, ToDoModelViewSet
+from usersapp.views import UserModelViewSet
 
 router = DefaultRouter()
 router.register("users", UserModelViewSet)
