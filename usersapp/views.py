@@ -4,12 +4,11 @@ from rest_framework.renderers import JSONRenderer
 from .models import User
 from .serializers import UserSerializer
 
-
 # class UserViewSet(viewsets.ModelViewSet):
 #     queryset = User.objects.all()
 #     serializer_class = UserSerializer
-#
+
 class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    renderer_classes = [JSONRenderer]
+    #renderer_classes = [JSONRenderer]
