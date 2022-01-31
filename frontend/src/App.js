@@ -63,23 +63,25 @@ class App extends React.Component {
 
         axios.get('http://127.0.0.1:8000/api/users/', { headers })
             .then(response => {
-                const users = response.data.results
-                this.setState(
-                    {
-                        'users': users,
-                    }
+                // const users = response.data.results
+                // this.setState(
+                //     {
+                //         'users': users,
+                //     }
+                    this.setState({users: response.data}
                 )
             }).catch(error => {
                 console.log(error)
-                this.setState({ users: [] })
+                // this.setState({ users: [] })
             })
 
         axios.get('http://127.0.0.1:8000/api/projects/', { headers })
             .then(response => {
-                const projects = response.data.results
+                // const projects = response.data.results
                 this.setState(
                     {
-                        'projects': projects,
+                        // 'projects': projects,
+                        projects: response.data
                     }
                 )
             }).catch(error => {
@@ -100,6 +102,7 @@ class App extends React.Component {
                 this.setState({ todos: [] })
             })
     }
+
 
     set_token(token) {
         const cookies = new Cookies()
@@ -123,9 +126,7 @@ class App extends React.Component {
 
     get_token(username, password) {
         axios.post('http://127.0.0.1:8000/api-token-auth/', {
-            username: username,
-            password: password
-        })
+            username: username, password: password })
             .then(response => {
                 this.set_token(response.data['token'])
             }).catch(error => alert('Неверный логин или пароль'))
@@ -141,44 +142,83 @@ class App extends React.Component {
         return headers
    }
 
+
     componentDidMount() {
         this.get_token_from_storage()
     }
 
-    render () {
-       return (
-           <div class="container">
-               <div class="block">
-                   <BrowserRouter>
-                       <div class="sidenav">
-                           <div>
-                               <MenuList menuItems={this.state.menuItems} />
-
-                           </div>
-                           <div>
-                               {this.is_authenticated() ?
-                                   <button onClick={()=>this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
-                           </div>
-                       </div>
-                       <div class="content">
-                           <Routes>
-                               <Route exact path='/' element={<UserList users={this.state.users} />} />
-                               <Route exact path='/projects' element={<ProjectList projects={this.state.projects} />} />
-                               <Route exact path='/todo' element={<ToDoList todos={this.state.todos} />} />
-                               <Route path="/users" element={<Navigate replace to="/" />} />
-                               <Route exact path='/login' element={<LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
-                               <Route path='*' element={<NotFound404 />} />
-                           </Routes>
-                       </div>
-                   </BrowserRouter>
-               </div>
-               <div class="footer">
-                   <FooterComponent footerComponent={this.state.footerComponent} />
-               </div>
-           </div>
-       )
-    }
+    render() {
+    return (
+        <div className="App">
+          <BrowserRouter>
+            <nav>
+              <ul>
+                <li>
+                  <Link to='/'>Users</Link>
+                </li>
+                <li>
+                  <Link to='/books'>Books</Link>
+                </li>
+                <li>
+                    {this.is_authenticated() ? <button onClick={()=>this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
+                </li>
+              </ul>
+            </nav>
+            <Routes>
+                <Route exact path='/' element={<UserList users={this.state.users} />} />
+                <Route exact path='/projects' element={<ProjectList projects={this.state.projects} />} />
+                <Route exact path='/todo' element={<ToDoList todos={this.state.todos} />} />
+                <Route path="/users" element={<Navigate replace to="/" />} />
+                <Route exact path='/login' element={<LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
+                <Route path='*' element={<NotFound404 />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+    )
+  }
 }
 
+export default App
 
-export default App;
+
+
+
+
+
+//     render () {
+//        return (
+//            <div class="container">
+//                <div class="block">
+//                    <BrowserRouter>
+//                        <div class="sidenav">
+//                            <div>
+//                                <MenuList menuItems={this.state.menuItems} />
+//
+//                            </div>
+//                            <div class="auth">
+//                                {this.is_authenticated() ?
+//                                    <button onClick={()=>this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
+//                            </div>
+//                        </div>
+//                        <div class="content">
+//                            <Routes>
+//                                <Route exact path='/' element={<UserList users={this.state.users} />} />
+//                                <Route exact path='/projects' element={<ProjectList projects={this.state.projects} />} />
+//                                <Route exact path='/todo' element={<ToDoList todos={this.state.todos} />} />
+//                                <Route path="/users" element={<Navigate replace to="/" />} />
+//                                <Route exact path='/login' element={<LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
+//                                <Route path='*' element={<NotFound404 />} />
+//                            </Routes>
+//                        </div>
+//                    </BrowserRouter>
+//                </div>
+//                <div class="footer">
+//                    <FooterComponent footerComponent={this.state.footerComponent} />
+//                </div>
+//            </div>
+//        )
+//     }
+// }
+//
+//
+// export default App;
