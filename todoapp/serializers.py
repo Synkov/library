@@ -13,3 +13,9 @@ class ToDoModelSerializer(ModelSerializer):
     class Meta:
         model = ToDo
         fields = "__all__"
+
+
+class ToDoModelSerializerBase(ModelSerializer):
+    class Meta:
+        model = ToDo
+        fields = "__all__"
