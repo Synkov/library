@@ -5,7 +5,7 @@ import './App.css';
 import UserList from './components/Users.js';
 import FooterComponent from './components/Footer.js';
 import MenuList from './components/Menu.js';
-import ProjectList from './components/ToDo.js';
+import ProjectList from './components/Projects.js';
 import ToDoList from './components/ToDo.js';
 import {BrowserRouter, Route, Link, Routes, Navigate} from 'react-router-dom';
 import './style.css';
@@ -37,15 +37,12 @@ class App extends React.Component {
        const menuItems = [
             {
                 'title': 'Главная',
-                'title': 'Пользователи',
                 'url': '/'
             },
-            {
-                'title': 'Настройки',
-                'url': '/settings',
+           {
                 'title': 'Проекты',
-                'url': '/projects',
-            },
+                'url': '/projects'
+           },
            {
                'title': 'ToDo',
                 'url': '/todo'
@@ -59,6 +56,7 @@ class App extends React.Component {
                    {
                        'users': users,
                        'menuItems': menuItems,
+                       'footer': FooterComponent,
                    }
                );
            }).catch(error => console.log(error));
@@ -74,7 +72,7 @@ class App extends React.Component {
                 )
             }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/ToDo/')
+        axios.get('http://127.0.0.1:8000/api/todo/')
             .then(response => {
                 const todos = response.data.results
                 this.setState(
