@@ -44,8 +44,14 @@ INSTALLED_APPS = [
     "usersapp",
     "corsheaders",
     "todoapp",
+<<<<<<< HEAD
     "django_filters",
+<<<<<<< HEAD
     "rest_framework.authtoken",
+=======
+=======
+>>>>>>> 17d7a11250244cf089fec8091b133655c22d6e89
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
