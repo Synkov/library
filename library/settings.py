@@ -46,8 +46,12 @@ INSTALLED_APPS = [
     "todoapp",
 <<<<<<< HEAD
     "django_filters",
+<<<<<<< HEAD
+    "rest_framework.authtoken",
+=======
 =======
 >>>>>>> 17d7a11250244cf089fec8091b133655c22d6e89
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -147,4 +151,12 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 100,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
 }
