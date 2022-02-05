@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+from rest_framework.serializers import ModelSerializer
+=======
 from rest_framework.serializers import ModelSerializer, StringRelatedField
+>>>>>>> 17d7a11250244cf089fec8091b133655c22d6e89
 
 from .models import Project, ToDo
 
