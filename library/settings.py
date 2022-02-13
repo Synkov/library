@@ -39,19 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "drf_yasg",
     "rest_framework",
     "authors",
     "usersapp",
     "corsheaders",
     "todoapp",
-<<<<<<< HEAD
     "django_filters",
-<<<<<<< HEAD
     "rest_framework.authtoken",
-=======
-=======
->>>>>>> 17d7a11250244cf089fec8091b133655c22d6e89
->>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -159,6 +154,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
 }
 
 CORS_ALLOWED_ORIGINS = [

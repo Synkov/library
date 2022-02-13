@@ -1,9 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from rest_framework import status
-from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APISimpleTestCase, APITestCase
-from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
-
+from rest_framework.test import APIClient, APIRequestFactory, APISimpleTestCase, APITestCase, force_authenticate
 
 User = get_user_model()
 
@@ -14,9 +13,7 @@ class TestUserModelViewSet(TestCase):
 
         client = APIClient()
 
-        user = User.objects.create(
-            email="user@local.host", username="user", password="password"
-        )
+        user = User.objects.create(email="user@local.host", username="user", password="password")
 
         client.login(username="admin", password="password")
 

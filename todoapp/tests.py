@@ -1,11 +1,13 @@
 import json
+
 from django.test import TestCase
-from rest_framework import status
-from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APISimpleTestCase, APITestCase
 from mixer.backend.django import mixer
-from .views import ProjectModelViewSet, ToDoModelViewSet
-from .models import ToDo, Project
+from rest_framework import status
+from rest_framework.test import APIClient, APIRequestFactory, APISimpleTestCase, APITestCase, force_authenticate
+
 from ..usersapp.models import User
+from .models import Project, ToDo
+from .views import ProjectModelViewSet, ToDoModelViewSet
 
 
 class TestProjectModelViewSet(TestCase):
@@ -61,18 +63,12 @@ class TestToDoViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_ToDo(self):
-        user = User.objects.create(
-            email="user@local.host", username="user", password="password"
-        )
+        user = User.objects.create(email="user@local.host", username="user", password="password")
 
-        project = Project.objects.create(
-            name="Test_project", repository="http://localhost"
-        )
+        project = Project.objects.create(name="Test_project", repository="http://localhost")
         project.users.add(user)
 
-        todo = ToDo.objects.create(
-            project=project, create=user, text="test text"
-        )
+        todo = ToDo.objects.create(project=project, create=user, text="test text")
 
         admin = User.objects.create_superuser("admin", "admin@local.host", "password")
         self.client.login(username="admin", password="password")
