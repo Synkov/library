@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+<<<<<<< HEAD
     "graphene_django",
+=======
+>>>>>>> master
     "drf_yasg",
     "rest_framework",
     "authors",
